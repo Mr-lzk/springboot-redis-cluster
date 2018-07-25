@@ -2,11 +2,13 @@ package com.gzly.query.redis.queryredis.redis;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 /**
  * 进一步封装redisTemplate的相关方法
@@ -15,6 +17,20 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class QueryRedis {
+
+    @PostConstruct
+    public void before() {
+        System.out.println("<<<<<<<<<<<<<<----------->>>>>>>>>>>>>>");
+        System.out.println("测试init-method========queryredis::before");
+        System.out.println("<<<<<<<<<<<<<<----------->>>>>>>>>>>>>>");
+    }
+
+    @PreDestroy
+    public void after() {
+        System.out.println("<<<<<<<<<<<<<<----------->>>>>>>>>>>>>>");
+        System.out.println("测试destroy-method==========queryredis::after");
+        System.out.println("<<<<<<<<<<<<<<----------->>>>>>>>>>>>>>");
+    }
 
     /**
      * 实际注入的是我们的RedisConfig中的Bean

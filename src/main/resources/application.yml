@@ -1,3 +1,4 @@
+
 query:
   redis:
     nodes:
@@ -5,3 +6,10 @@ query:
       - localhost:7001
       - localhost:7002
     password:
+spring:
+  redis:
+    jedis:
+      pool:
+        max-active:
+server:
+  port: 80
