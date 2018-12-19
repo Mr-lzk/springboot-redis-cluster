@@ -44,8 +44,8 @@ public class QueryRedis {
      * @param o
      */
     public void set(String k,Object o) {
-        String v = JSON.toJSONString(o);
-        redisTemplate.opsForValue().set(k,v);
+//        String v = JSON.toJSONString(o);
+        redisTemplate.opsForValue().set(k,o);
     }
 
     /**
@@ -66,9 +66,11 @@ public class QueryRedis {
      * @return
      */
     public <T> T get(String key, Class<T> clazz) {
-        ValueOperations<String,String> valueOperations = redisTemplate.opsForValue();
-        String res = valueOperations.get(key);
-        JSONObject jsonObject = JSONObject.parseObject(res);
-        return jsonObject.toJavaObject(clazz);
+        ValueOperations<String,T> valueOperations = redisTemplate.opsForValue();
+        T t = valueOperations.get(key);
+//        String res = valueOperations.get(key);
+//        JSONObject jsonObject = JSONObject.parseObject(res);
+//        return jsonObject.toJavaObject(clazz);
+        return t;
     }
 }

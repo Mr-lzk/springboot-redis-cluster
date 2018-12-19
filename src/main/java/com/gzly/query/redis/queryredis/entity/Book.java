@@ -2,14 +2,23 @@ package com.gzly.query.redis.queryredis.entity;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * @author lzk
  * @date 2018/6/12
  */
-public class Book {
+public class Book implements Serializable {
+    private static final long serialVersionUID = 4604372926305272713L;
+
+    @NotNull(message = "书籍名称必填！")
     private String name;
+
     private String year;
 
     public Book() {
